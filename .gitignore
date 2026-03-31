@@ -44,3 +44,6 @@ api/db/*.db-journal
 
 # Vercel local metadata
 .vercel/
+
+# Local temp
+.tmp-gh-clone/
