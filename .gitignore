@@ -41,3 +41,6 @@ api/db/*.db-journal
 *.sln
 *.sw?
 .vite
+
+# Vercel local metadata
+.vercel/
