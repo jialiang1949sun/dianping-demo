@@ -1,0 +1,13 @@
+services:
+  dianping:
+    build: .
+    environment:
+      - NODE_ENV=production
+      - PORT=3002
+      - JWT_SECRET=change_me_in_production
+    ports:
+      - "3002:3002"
+    volumes:
+      - ./api/db:/app/api/db
+      - ./uploads:/app/uploads
+
