@@ -424,7 +424,7 @@ const Home: React.FC = () => {
                     type="button"
                     onClick={() => {
                       window.scrollTo({ top: 0, behavior: 'smooth' });
-                      window.dispatchEvent(new Event('dp:open-location'));
+                      window.setTimeout(() => window.dispatchEvent(new Event('dp:open-location')), 0);
                     }}
                     className="px-4 py-2 rounded-xl bg-gray-50 border border-gray-200 text-gray-700 font-semibold hover:bg-gray-100"
                   >
