@@ -48,3 +48,4 @@ api/db/*.db-journal
 # Local temp
 .tmp-gh-clone/
 .vercel
+.env*
