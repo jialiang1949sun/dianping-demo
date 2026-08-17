@@ -5,3 +5,11 @@ dist
 .trae
 .log
 .figma
+api/app.ts
+api/server.ts
+api/config
+api/controllers
+api/db
+api/middlewares
+api/routes
+api/tsconfig.server.json

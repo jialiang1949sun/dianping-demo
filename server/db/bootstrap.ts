@@ -88,7 +88,7 @@ export const seedStatements = [
   `INSERT OR IGNORE INTO merchants (id, name, address, phone, category, business_hours, latitude, longitude, cover_image_url, description, owner_id) VALUES
     (1, '海底捞火锅(南京西路店)', '静安区南京西路 1038 号', '021-00000001', 'Restaurant', '10:00-02:00', 31.231, 121.459, 'https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?w=1200&auto=format&fit=crop&q=80', '服务热情，适合聚餐，锅底选择多。', 2),
     (2, '星巴克臻选上海烘焙工坊', '静安区南京西路 789 号', '021-00000005', 'Cafe', '07:30-23:00', 31.231, 121.454, 'https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=1200&auto=format&fit=crop&q=80', '巨型咖啡烘焙工坊，拍照很出片。', 2),
-    (3, '上海迪士尼乐园', '浦东新区川沙新镇黄赵路 310 号', '021-00000009', 'Family', '09:00-21:00', 31.143, 121.657, 'https://images.unsplash.com/photo-1520975962215-3bcd3c8b9e08?w=1200&auto=format&fit=crop&q=80', '亲子出游首选，项目丰富，烟花必看。', 2),
+    (3, '上海迪士尼乐园', '浦东新区川沙新镇黄赵路 310 号', '021-00000009', 'Family', '09:00-21:00', 31.143, 121.657, 'https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?w=1200&auto=format&fit=crop&q=80', '亲子出游首选，项目丰富，烟花必看。', 2),
     (4, '上海国金中心 IFC', '浦东新区世纪大道 8 号', '021-00000017', 'Shopping', '10:00-22:00', 31.235, 121.507, 'https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?w=1200&auto=format&fit=crop&q=80', '高端商场，品牌齐全，交通便利。', 2),
     (5, '上海外滩华尔道夫酒店', '黄浦区中山东一路 2 号', '021-00000025', 'Hotel', '全天', 31.240, 121.490, 'https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?w=1200&auto=format&fit=crop&q=80', '外滩景观一流，适合度假与纪念日。', 2),
     (6, '上海中心观光厅', '浦东新区银城中路 501 号', '021-00000029', 'Travel', '08:30-22:00', 31.233, 121.505, 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=1200&auto=format&fit=crop&q=80', '高空观景，俯瞰浦江两岸。', 2)`,
