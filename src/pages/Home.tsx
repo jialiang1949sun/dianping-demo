@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { useSearchParams, Link } from 'react-router-dom';
 import api from '../services/api';
 import { Star, MapPin, Search, ArrowRight, Utensils, Coffee, ShoppingBag, Music, ChevronLeft, ChevronRight, Users, Wrench, Building2, Store, HeartPulse, Dumbbell, GraduationCap, Sparkles, Plane } from 'lucide-react';
@@ -27,6 +27,14 @@ const Home: React.FC = () => {
   const [minRating, setMinRating] = useState<number>(0);
   const [sortMode, setSortMode] = useState<'recommended' | 'distance'>('recommended');
   const [radiusKm, setRadiusKm] = useState<number>(0);
+  const recommendationsRef = useRef<HTMLDivElement>(null);
+
+  const showRecommendations = (nextCategory?: string) => {
+    if (nextCategory !== undefined) setCategory(nextCategory);
+    window.requestAnimationFrame(() => {
+      recommendationsRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  };
 
   const readUserCoords = () => {
     const lat = localStorage.getItem('dp_lat');
@@ -321,7 +329,11 @@ const Home: React.FC = () => {
             {heroSlides[heroIndex].subtitle}
           </p>
           <div className="flex space-x-4">
-            <button className="bg-orange-500 hover:bg-orange-600 text-white px-8 py-3 rounded-full font-medium transition-all transform hover:scale-105 shadow-lg flex items-center">
+            <button
+              type="button"
+              onClick={() => showRecommendations('')}
+              className="bg-orange-500 hover:bg-orange-600 text-white px-8 py-3 rounded-full font-medium transition-all transform hover:scale-105 shadow-lg flex items-center"
+            >
               探索热门 <ArrowRight className="w-4 h-4 ml-2" />
             </button>
           </div>
@@ -369,7 +381,7 @@ const Home: React.FC = () => {
                       key={key}
                       whileHover={{ y: -4 }}
                       whileTap={{ scale: 0.98 }}
-                      onClick={() => setCategory(key)}
+                      onClick={() => showRecommendations(key)}
                       className="text-left group bg-gradient-to-br from-gray-50 to-white border border-gray-200/70 rounded-2xl p-5 hover:shadow-lg hover:border-orange-200 transition-all"
                     >
                       <div className="flex items-start justify-between">
@@ -410,7 +422,10 @@ const Home: React.FC = () => {
                   </select>
                   <button
                     type="button"
-                    onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+                    onClick={() => {
+                      window.scrollTo({ top: 0, behavior: 'smooth' });
+                      window.dispatchEvent(new Event('dp:open-location'));
+                    }}
                     className="px-4 py-2 rounded-xl bg-gray-50 border border-gray-200 text-gray-700 font-semibold hover:bg-gray-100"
                   >
                     去定位
@@ -472,7 +487,7 @@ const Home: React.FC = () => {
               )}
             </div>
 
-            <div className="space-y-8">
+            <div ref={recommendationsRef} id="recommendations" className="space-y-8 scroll-mt-24">
               <div className="flex items-center justify-between">
                 <h2 className="text-2xl font-bold text-gray-900 flex items-center">
                   <Star className="w-6 h-6 mr-2 text-orange-500 fill-current" />
@@ -522,7 +537,7 @@ const Home: React.FC = () => {
                           </div>
                           <button
                             type="button"
-                            onClick={() => setCategory(key)}
+                            onClick={() => showRecommendations(key)}
                             className="text-sm font-medium text-orange-600 hover:text-orange-700"
                           >
                             查看更多 →
@@ -532,8 +547,8 @@ const Home: React.FC = () => {
                         {list.length === 0 ? (
                           <div className="text-sm text-gray-500 bg-gray-50 border border-gray-100 rounded-2xl p-6">该分类暂无推荐数据</div>
                         ) : (
-                          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                            {list.slice(0, 4).map((merchant, index) => (
+                          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-5 gap-6">
+                            {list.slice(0, 5).map((merchant, index) => (
                               <Link
                                 to={`/merchant/${merchant.id}`}
                                 key={merchant.id}

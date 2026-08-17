@@ -44,6 +44,15 @@ const Navbar: React.FC = () => {
     return () => document.removeEventListener('click', handler);
   }, []);
 
+  useEffect(() => {
+    const openLocation = () => {
+      setIsLocationOpen(true);
+      setIsMobileMenuOpen(true);
+    };
+    window.addEventListener('dp:open-location', openLocation);
+    return () => window.removeEventListener('dp:open-location', openLocation);
+  }, []);
+
   const reverseGeocode = async (lat: number, lon: number) => {
     const url = `https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${lat}&lon=${lon}`;
     const resp = await fetch(url);
